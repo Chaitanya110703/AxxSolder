@@ -26,6 +26,8 @@
 #include "test.h"
 #include "pid.h"
 #include "moving_average.h"
+#include "flash.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,6 +65,12 @@ uint32_t interval_heating_halted_update = 500;
 uint32_t previous_millis_left_stand = 0;
 uint32_t EMERGENCY_shutdown_time = 1800000; 	//30 minutes
 uint32_t EMERGENCY_shutdown_temperature = 475;  //475 Deg C
+
+uint32_t flash_write_data_array[8];
+uint32_t flash_read_data_array[8];
+Flash_Read_Data(FLASH_USER_FIRST_START_ADDR, flash_read_data_array, 5);
+Flash_Write_Data(FLASH_USER_LAST_POWER_ADDR, (uint32_t *)flash_write_data_array, 1);
+
 
 /* states for runtime switch */
 typedef enum {
