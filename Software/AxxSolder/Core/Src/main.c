@@ -66,11 +66,10 @@ uint32_t previous_millis_left_stand = 0;
 uint32_t EMERGENCY_shutdown_time = 1800000; 	//30 minutes
 uint32_t EMERGENCY_shutdown_temperature = 475;  //475 Deg C
 
-uint32_t flash_write_data_array[8];
-uint32_t flash_read_data_array[8];
-Flash_Read_Data(FLASH_USER_FIRST_START_ADDR, flash_read_data_array, 5);
-Flash_Write_Data(FLASH_USER_LAST_POWER_ADDR, (uint32_t *)flash_write_data_array, 1);
+uint32_t flash_write_data_array[6];
+uint32_t flash_read_data_array[6];
 
+uint32_t  crc = 0;
 
 /* states for runtime switch */
 typedef enum {
@@ -156,6 +155,7 @@ FilterTypeDef input_voltage_filterStruct;
 FilterTypeDef stand_sense_filterStruct;
 FilterTypeDef handle_sense_filterStruct;
 
+PID_TypeDef TPID;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -168,8 +168,10 @@ FilterTypeDef handle_sense_filterStruct;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
+ ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
+
+CRC_HandleTypeDef hcrc;
 
 I2C_HandleTypeDef hi2c1;
 
@@ -198,6 +200,7 @@ static void MX_USART2_UART_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM16_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_CRC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -205,7 +208,7 @@ static void MX_I2C1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-PID_TypeDef TPID;
+
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle){
 	/* Set transmission flag: transfer complete */
@@ -476,6 +479,9 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 void set_heater_duty(uint16_t dutycycle){
 	TIM17->CCR1 = dutycycle;
 }
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -515,6 +521,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM16_Init();
   MX_I2C1_Init();
+  MX_CRC_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
 	HAL_TIM_PWM_Start(&htim17, TIM_CHANNEL_1);
@@ -532,6 +539,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	Flash_Read_Data(FLASH_USER_FIRST_START_ADDR, flash_read_data_array, 5);
+	Flash_Write_Data(FLASH_USER_LAST_POWER_ADDR, (uint32_t *)flash_write_data_array, 1);
+	// Calculate the CRC of flash - Not used at the moment
+	//crc = HAL_CRC_Accumulate(&hcrc, Flash_Rx_Data, 5);
 
 	/* Init and fill filter structures with initial values */
 	set_heater_duty(0);
@@ -810,6 +821,37 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief CRC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CRC_Init(void)
+{
+
+  /* USER CODE BEGIN CRC_Init 0 */
+
+  /* USER CODE END CRC_Init 0 */
+
+  /* USER CODE BEGIN CRC_Init 1 */
+
+  /* USER CODE END CRC_Init 1 */
+  hcrc.Instance = CRC;
+  hcrc.Init.DefaultPolynomialUse = DEFAULT_POLYNOMIAL_ENABLE;
+  hcrc.Init.DefaultInitValueUse = DEFAULT_INIT_VALUE_ENABLE;
+  hcrc.Init.InputDataInversionMode = CRC_INPUTDATA_INVERSION_NONE;
+  hcrc.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLE;
+  hcrc.InputDataFormat = CRC_INPUTDATA_FORMAT_BYTES;
+  if (HAL_CRC_Init(&hcrc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CRC_Init 2 */
+
+  /* USER CODE END CRC_Init 2 */
 
 }
 

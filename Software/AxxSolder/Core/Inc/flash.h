@@ -71,7 +71,10 @@
 #define ADDR_FLASH_PAGE_62    ((uint32_t)0x0801F000) /* Base @ of Page 62, 2 Kbytes */
 #define ADDR_FLASH_PAGE_63    ((uint32_t)0x0801F800) /* Base @ of Page 63, 2 Kbytes */
 
-#define FLASH_USER_FIRST_START_ADDR ((uint32_t)ADDR_FLASH_PAGE_61)
+#define FLASH_USER_FIRST_START_ADDR   ((uint32_t)ADDR_FLASH_PAGE_61)   /* Start @ of user Flash area */
+#define FLASH_USER_SETTINGS_ADDR   ((uint32_t)ADDR_FLASH_PAGE_62)   /* Start @ of user Flash area */
+#define FLASH_USER_LAST_POWER_ADDR   ((uint32_t)ADDR_FLASH_PAGE_63)   /* Start @ of user Flash area */
+#define FLASH_USER_END_ADDR     (ADDR_FLASH_PAGE_63 + FLASH_PAGE_SIZE - 1)   /* End @ of user Flash area */
 
 /* Function prototypes -------------------------------------------------------*/
 uint32_t GetPage(uint32_t Addr);

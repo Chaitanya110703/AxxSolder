@@ -2,6 +2,8 @@
 #include <math.h>
 #include <stdio.h>
 #include "stdlib.h"
+#include "stm32g4xx_hal.h"
+
 
 uint32_t GetPage(uint32_t Addr)
 {
