@@ -60,39 +60,38 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define DEBUG_SIGNAL_A_Pin GPIO_PIN_0
-#define DEBUG_SIGNAL_A_GPIO_Port GPIOF
-#define DEBUG_SIGNAL_B_Pin GPIO_PIN_1
-#define DEBUG_SIGNAL_B_GPIO_Port GPIOF
-#define THERMOCOUPLE_Pin GPIO_PIN_0
-#define THERMOCOUPLE_GPIO_Port GPIOA
-#define CURRENT_Pin GPIO_PIN_1
-#define CURRENT_GPIO_Port GPIOA
-#define AMBIENT_TEMP_Pin GPIO_PIN_3
-#define AMBIENT_TEMP_GPIO_Port GPIOA
-#define BUZZER_Pin GPIO_PIN_5
-#define BUZZER_GPIO_Port GPIOA
-#define HEATER_Pin GPIO_PIN_7
-#define HEATER_GPIO_Port GPIOA
+#define SPI_DC_Pin GPIO_PIN_0
+#define SPI_DC_GPIO_Port GPIOF
+#define IDENTIFICATION_INP_Pin GPIO_PIN_1
+#define IDENTIFICATION_INP_GPIO_Port GPIOF
+#define THERMOCOUPLE_1_Pin GPIO_PIN_0
+#define THERMOCOUPLE_1_GPIO_Port GPIOA
+#define CURRENT_1_Pin GPIO_PIN_1
+#define CURRENT_1_GPIO_Port GPIOA
+#define HEATER_1_Pin GPIO_PIN_3
+#define HEATER_1_GPIO_Port GPIOA
+#define THERMOCOUPLE_2_Pin GPIO_PIN_5
+#define THERMOCOUPLE_2_GPIO_Port GPIOA
+#define CURRENT_2_Pin GPIO_PIN_7
+#define CURRENT_2_GPIO_Port GPIOA
 #define BUSVOLTAGE_Pin GPIO_PIN_0
 #define BUSVOLTAGE_GPIO_Port GPIOB
-#define ENC_BUTTON_Pin GPIO_PIN_9
-#define ENC_BUTTON_GPIO_Port GPIOA
-#define ENC_BUTTON_EXTI_IRQn EXTI9_5_IRQn
-#define HANDLE_INP_Pin GPIO_PIN_10
+#define HEATER_2_Pin GPIO_PIN_8
+#define HEATER_2_GPIO_Port GPIOA
+#define HANDLE_INP_Pin GPIO_PIN_9
 #define HANDLE_INP_GPIO_Port GPIOA
-#define STAND_INP_Pin GPIO_PIN_11
+#define STAND_INP_Pin GPIO_PIN_10
 #define STAND_INP_GPIO_Port GPIOA
-#define SPI_DC_Pin GPIO_PIN_12
-#define SPI_DC_GPIO_Port GPIOA
 #define T_SWDIO_Pin GPIO_PIN_13
 #define T_SWDIO_GPIO_Port GPIOA
 #define T_SWCLK_Pin GPIO_PIN_14
 #define T_SWCLK_GPIO_Port GPIOA
 #define SPI_RST_Pin GPIO_PIN_4
 #define SPI_RST_GPIO_Port GPIOB
-#define SPI_CS_Pin GPIO_PIN_6
-#define SPI_CS_GPIO_Port GPIOB
+#define ENC_BUTTON_Pin GPIO_PIN_6
+#define ENC_BUTTON_GPIO_Port GPIOB
+#define BUZZER_Pin GPIO_PIN_8
+#define BUZZER_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
