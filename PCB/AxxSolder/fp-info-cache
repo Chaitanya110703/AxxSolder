@@ -1,4 +1,4 @@
-22441592656524541
+22448385859979061
 691243310007
 691243310007
 
@@ -6,6 +6,13 @@
 0
 7
 7
+1N5819HW-7-F
+SOD3716X145N
+SOD123(H=1.45)
+Diode
+0
+2
+2
 1_5inch-rgb-oled-module_asm-1110
 1_5inch-rgb-oled-module_asm-1110
 
@@ -66296,6 +66303,13 @@ Diode
 0
 2
 2
+PTS636_SM43_SMTR_LFS
+PTS636SM43SMTRLFS
+PTS636 SM43 SMTR LFS-2
+Switch
+0
+2
+2
 Package_BGA
 Analog_BGA-28_4.0x6.25mm_Layout4x7_P0.8mm_Ball0.45mm_Pad0.4
 Analog BGA-28 4.0mm x 6.25mm package, pitch 0.4mm pad, based on https://www.analog.com/media/en/technical-documentation/data-sheets/8063fa.pdf
@@ -85286,7 +85300,7 @@ PowerFLAT™ 3.3x3.3
 MOSFET (P-Channel)
 0
 7
-7
+5
 STM32G431KBT6
 QFP80P900X900X160-32N
 LQFP32
@@ -91818,6 +91832,20 @@ Connector
 0
 16
 16
+USBLC6-2P6
+USBLC62P6
+USBLC6-2P6-3
+Integrated Circuit
+0
+6
+6
+V7NM103-M3_I
+V7NM103M3I
+V7NM103-M3/I-1
+Schottky Diode
+0
+3
+3
 Valve
 Valve_ECC-83-1
 Valve ECC-83-1 round pins
